@@ -34,6 +34,20 @@ class AuthController {
         .json({ message: error.message ?? "something went wrong" });
     }
   };
+
+  public verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.authService.verifyEmail(req.params.token);
+      res.status(200).json({
+        message: "Email verified",
+        data,
+      });
+    } catch (error: any) {
+      res
+        .status(error.status ?? 500)
+        .json({ message: error.message ?? "something went wrong" });
+    }
+  };
 }
 
 export default AuthController;

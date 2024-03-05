@@ -20,7 +20,7 @@ export const sendEmail = async (
     to: toEmail, // list of receivers
     subject: "Hello", // Subject line
     text: "Hello world?", // plain text body
-    html: `<div><h2>Hi ${name}</h2></div>`, // html body
+    html: `<div><h2>Hi ${name}</h2><h4>${token}</h4></div>`, // html body
   });
 
   console.log("**", info);

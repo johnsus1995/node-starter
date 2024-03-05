@@ -57,4 +57,21 @@ export class AuthService {
 
     return { user: payload, token: `Bearer ${token}` };
   }
+
+  public async verifyEmail(token: string): Promise<LoginResponse> {
+    const res = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+    const user = await User.update(
+      {
+        isVerified: true,
+      },
+      {
+        where: {
+          id: res.id,
+        },
+        returning: true,
+      }
+    );
+
+    return user as any;
+  }
 }

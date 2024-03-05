@@ -20,10 +20,15 @@ class AuthRoutes implements Route {
       this.authController.signup
     );
     this.router.post(
-        `${this.path}/login`,
-        validationMiddleware(LoginDto, "body"),
-        this.authController.login
-      );
+      `${this.path}/login`,
+      validationMiddleware(LoginDto, "body"),
+      this.authController.login
+    );
+    this.router.post(
+      `${this.path}/verify-email/:token`,
+      // validationMiddleware(LoginDto, "body"),
+      this.authController.verifyEmail
+    );
   }
 }
 
