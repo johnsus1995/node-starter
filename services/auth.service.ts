@@ -1,0 +1,60 @@
+import { LoginDto, SignupDto } from "../dtos/auth.dto";
+import { LoginResponse } from "../interfaces/auth.interface";
+import { User, UserAttributes } from "../models/User";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { sendEmail } from "../utils/sendEmail";
+
+export class AuthService {
+  public async signup(data: SignupDto): Promise<UserAttributes> {
+    const user = await User.findOne({ where: { email: data.email } });
+    if (user) {
+      throw { status: 409, message: "User exists!" };
+    }
+    const newPassword = await bcrypt.hash(data.password, 10);
+    const newUser = await User.create({
+      email: data.email,
+      name: data.name,
+      password: newPassword,
+    });
+
+    const result = {
+      id: newUser.id,
+      name: newUser.name,
+      email: newUser.email,
+      isVerified: newUser.isVerified,
+    };
+
+    const token = await jwt.sign(result, process.env.JWT_SECRET as string, {
+      expiresIn: 86400,
+    });
+
+    sendEmail(data.email, token, data.name);
+
+    return newUser;
+  }
+
+  public async login(data: LoginDto): Promise<LoginResponse> {
+    const user = await User.findOne({ where: { email: data.email } });
+    if (!user) {
+      throw { status: 404, message: "User does not exists!" };
+    }
+
+    const isMatch = await bcrypt.compare(data.password, user.password);
+    if (!isMatch) {
+      throw { status: 400, message: "Password not match!" };
+    }
+
+    const payload = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      isVerified: user.isVerified,
+    };
+    const token = await jwt.sign(payload, process.env.JWT_SECRET as string, {
+      expiresIn: 86400,
+    });
+
+    return { user: payload, token: `Bearer ${token}` };
+  }
+}

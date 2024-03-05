@@ -1,5 +1,6 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
+import { Post } from "./Post";
 export interface UserAttributes {
   id: number;
   name: string;
@@ -11,7 +12,13 @@ export interface UserAttributes {
   deletedAt?: Date;
 }
 
-export class User extends Model<UserAttributes> implements UserAttributes {
+export interface UserInput
+  extends Optional<UserAttributes, "id" | "isVerified"> {}
+
+export class User
+  extends Model<UserAttributes, UserInput>
+  implements UserAttributes
+{
   public id!: number;
   public name!: string;
   public email!: string;
@@ -54,3 +61,6 @@ User.init(
     paranoid: true,
   }
 );
+
+User.hasMany(Post);
+Post.belongsTo(User, { foreignKey: "userId" });
