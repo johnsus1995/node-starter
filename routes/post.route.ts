@@ -23,5 +23,29 @@ export class PostRoutes implements Route {
       validationMiddleware(CreatePostDto, "body"),
       this.postController.createPost
     );
+
+    this.router.get(
+      `${this.path}`,
+      authMiddleware,
+      this.postController.fetchPost
+    );
+
+    this.router.get(
+      `${this.path}/:id`,
+      authMiddleware,
+      this.postController.fetchPostById
+    );
+
+    this.router.put(
+      `${this.path}/:id`,
+      authMiddleware,
+      validationMiddleware(CreatePostDto, "body"),
+      this.postController.updatePost
+    );
+    this.router.delete(
+      `${this.path}/:id`,
+      authMiddleware,
+      this.postController.deletePost
+    );
   }
 }
