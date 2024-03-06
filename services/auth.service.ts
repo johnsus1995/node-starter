@@ -4,6 +4,7 @@ import { User, UserAttributes } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../utils/sendEmail";
+import { PostAttributes } from "../models/Post";
 
 export class AuthService {
   public async signup(data: SignupDto): Promise<UserAttributes> {
@@ -58,7 +59,7 @@ export class AuthService {
     return { user: payload, token: `Bearer ${token}` };
   }
 
-  public async verifyEmail(token: string): Promise<LoginResponse> {
+  public async verifyEmail(token: string): Promise<PostAttributes> {
     const res = jwt.verify(token, process.env.JWT_SECRET as string) as any;
     const user = await User.update(
       {
