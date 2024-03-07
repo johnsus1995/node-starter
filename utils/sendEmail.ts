@@ -1,12 +1,8 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
-export const sendEmail = async (
-  toEmail: string,
-  token: string,
-  name: string
-) => {
+export const sendEmail = async (toEmail: string, token: string, name: string) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: 'smtp.gmail.com',
     port: 587,
     secure: false, // Use `true` for port 465, `false` for all other ports
     auth: {
@@ -15,13 +11,13 @@ export const sendEmail = async (
     },
   });
 
-  const info = await transporter.sendMail({
+  await transporter.sendMail({
     from: '"my-app" <jaison.john@ileafsolutions.com>', // sender address
     to: toEmail, // list of receivers
-    subject: "Hello", // Subject line
-    text: "Hello world?", // plain text body
+    subject: 'Hello', // Subject line
+    text: 'Hello world?', // plain text body
     html: `<div><h2>Hi ${name}</h2><h4>${token}</h4></div>`, // html body
   });
 
-  console.log("**", info);
+  // console.log("**", info);
 };
