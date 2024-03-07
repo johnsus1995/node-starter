@@ -13,6 +13,7 @@ class AuthController {
         message: "user created",
         data,
       });
+      next();
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -28,6 +29,7 @@ class AuthController {
         message: "Login success",
         data,
       });
+      next();
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -35,13 +37,18 @@ class AuthController {
     }
   };
 
-  public verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
+  public verifyEmail = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     try {
       const data = await this.authService.verifyEmail(req.params.token);
       res.status(200).json({
         message: "Email verified",
         data,
       });
+      next();
     } catch (error: any) {
       res
         .status(error.status ?? 500)

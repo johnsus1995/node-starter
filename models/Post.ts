@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
-import { User } from "./User";
 export interface PostAttributes {
   id: number;
   title: string;

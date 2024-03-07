@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --files index.ts"
+    "dev": "tsnd --respawn --files index.ts",
+    "lint": "eslint **/*.ts",
+    "format": "eslint **/*.ts --fix"
   },
   "author": "",
   "license": "ISC",
@@ -27,9 +29,19 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.11.24",
     "@types/nodemailer": "^6.4.14",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
     "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
