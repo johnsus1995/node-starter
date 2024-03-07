@@ -44,10 +44,7 @@ class AuthController {
   ) => {
     try {
       const data = await this.authService.verifyEmail(req.params.token);
-      res.status(200).json({
-        message: "Email verified",
-        data,
-      });
+      res.status(200).json({message: "Email verified",data,});
       next();
     } catch (error: any) {
       res
