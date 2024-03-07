@@ -18,6 +18,8 @@ class PostController {
         message: "post created",
         data,
       });
+      next();
+
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -36,6 +38,8 @@ class PostController {
         message: "post fetched",
         data,
       });
+      next();
+
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -54,6 +58,8 @@ class PostController {
         message: "post fetched",
         data,
       });
+      next();
+
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -78,6 +84,7 @@ class PostController {
         message: "post updated",
         data,
       });
+      next();
     } catch (error: any) {
       res
         .status(error.status ?? 500)
@@ -95,6 +102,7 @@ class PostController {
       res.status(200).json({
         message: "post deleted",
       });
+      next();
     } catch (error: any) {
       res
         .status(error.status ?? 500)

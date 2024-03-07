@@ -1,5 +1,3 @@
-import { Router } from "express";
-
 interface User{
     id: number,
     email: string,
