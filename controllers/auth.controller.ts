@@ -25,8 +25,7 @@ class AuthController {
     try {
       const userData: LoginDto = req.body;
       const data = await this.authService.login(userData);
-      res.status(200).json({
-        message: "Login success",
+      res.status(200).json({message: "Login success",
         data,
       });
       next();
