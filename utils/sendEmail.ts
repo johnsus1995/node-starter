@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-//test
+//test new
 export const sendEmail = async (
   toEmail: string,
   token: string,
