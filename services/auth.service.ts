@@ -13,17 +13,14 @@ export class AuthService {
       throw { status: 409, message: "User exists!" };
     }
     const newPassword = await bcrypt.hash(data.password, 10);
+    
     const newUser = await User.create({
       email: data.email,
       firstName: data.firstName,
       lastName: data.lastName,
       phoneNumber:data.phoneNumber,
-      registrationNumber:data.registrationNumber,
-      address1:data.address1,
-      address2:data.address2,
-      userName:data.userName,
+      scjRegId:data.scjRegId,
       role:data.role,
-      profileImage:data.profileImage,
       password: newPassword,
     });
 

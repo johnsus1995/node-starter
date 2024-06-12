@@ -19,22 +19,23 @@ import {
     phoneNumber: number;
 
     @IsString()
-    registrationNumber: number;
+    scjRegId: string;
 
-    @IsString()
-    address1: string;
+    // @IsString()
+    // address1: string;
 
-    @IsString()
-    address2: string;
+    // @IsString()
+    // address2: string;
 
-    @IsString()
-    userName: string;
+    // @IsString()
+    // userName: string;
+
+    // @IsString()
+    // profileImage: string;
 
     @IsString()
     role: string;
 
-    @IsString()
-    profileImage: string;
 
     @IsString()
     @Length(8)

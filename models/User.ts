@@ -9,12 +9,12 @@ export interface UserAttributes {
   password: string;
   isVerified: boolean | undefined;
   phoneNumber:number;
-  registrationNumber:number;
-  address1:string;
-  address2?:string;
-  userName:string;
+  scjRegId:string;
+  // address1:string;
+  // address2?:string;
+  // userName:string;
+  // profileImage?:string;
   role:string;
-  profileImage?:string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -34,12 +34,12 @@ export class User
   public password!: string;
   public isVerified: boolean | any;
   public phoneNumber!: number | any;
-  public registrationNumber!: number | any;
-  public address1!: string;
-  public address2: string;
-  public userName!: string;
+  public scjRegId!: string | any;
+  // public address1!: string;
+  // public address2: string;
+  // public userName!: string;
+  // public profileImage!: string;
   public role!: string;
-  public profileImage!: string;
 
   
   public readonly createdAt!: Date;
@@ -80,29 +80,29 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    registrationNumber: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    address1: {
+    scjRegId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address2: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // address1: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // address2: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // userName: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // profileImage: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    profileImage: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
   },
   {
