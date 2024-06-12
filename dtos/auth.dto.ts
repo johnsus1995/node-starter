@@ -10,7 +10,31 @@ import {
     email: string;
 
     @IsString()
-    name: string;
+    firstName: string;
+
+    @IsString()
+    lastName: string;
+
+    @IsString()
+    phoneNumber: number;
+
+    @IsString()
+    registrationNumber: number;
+
+    @IsString()
+    address1: string;
+
+    @IsString()
+    address2: string;
+
+    @IsString()
+    userName: string;
+
+    @IsString()
+    role: string;
+
+    @IsString()
+    profileImage: string;
 
     @IsString()
     @Length(8)

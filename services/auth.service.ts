@@ -15,13 +15,21 @@ export class AuthService {
     const newPassword = await bcrypt.hash(data.password, 10);
     const newUser = await User.create({
       email: data.email,
-      name: data.name,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phoneNumber:data.phoneNumber,
+      registrationNumber:data.registrationNumber,
+      address1:data.address1,
+      address2:data.address2,
+      userName:data.userName,
+      role:data.role,
+      profileImage:data.profileImage,
       password: newPassword,
     });
 
     const result = {
       id: newUser.id,
-      name: newUser.name,
+      name: newUser.firstName,
       email: newUser.email,
       isVerified: newUser.isVerified,
     };
@@ -30,7 +38,7 @@ export class AuthService {
       expiresIn: 86400,
     });
 
-    sendEmail(data.email, token, data.name);
+    sendEmail(data.email, token, data.firstName);
 
     return newUser;
   }
@@ -48,7 +56,7 @@ export class AuthService {
 
     const payload = {
       id: user.id,
-      name: user.name,
+      // name: user.name,
       email: user.email,
       isVerified: user.isVerified,
     };

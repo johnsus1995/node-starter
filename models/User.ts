@@ -3,10 +3,18 @@ import sequelize from ".";
 import { Post } from "./Post";
 export interface UserAttributes {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   isVerified: boolean | undefined;
+  phoneNumber:number;
+  registrationNumber:number;
+  address1:string;
+  address2?:string;
+  userName:string;
+  role:string;
+  profileImage?:string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -20,10 +28,20 @@ export class User
   implements UserAttributes
 {
   public id!: number;
-  public name!: string;
+  public firstName: string;
+  public lastName: string;
   public email!: string;
   public password!: string;
   public isVerified: boolean | any;
+  public phoneNumber!: number | any;
+  public registrationNumber!: number | any;
+  public address1!: string;
+  public address2: string;
+  public userName!: string;
+  public role!: string;
+  public profileImage!: string;
+
+  
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
@@ -41,7 +59,11 @@ User.init(
       allowNull: false,
       unique: true,
     },
-    name: {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -53,6 +75,34 @@ User.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    phoneNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    registrationNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    address1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address2: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    profileImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
