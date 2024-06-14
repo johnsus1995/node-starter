@@ -33,7 +33,7 @@ export class User
   public email!: string;
   public password!: string;
   public isVerified: boolean | any;
-  public phoneNumber!: number | any;
+  public phoneNumber!: number;
   public scjRegId!: string | any;
   // public address1!: string;
   // public address2: string;

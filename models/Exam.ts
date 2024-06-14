@@ -54,5 +54,5 @@ Exam.init(
   }
 );
 
-// User.hasMany(Exam);
-// Exam.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Exam);
+Exam.belongsTo(User, { foreignKey: "userId" });

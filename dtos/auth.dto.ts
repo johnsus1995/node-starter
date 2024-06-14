@@ -2,7 +2,7 @@ import {
     IsEmail,
     IsString,
     Length,
-
+    IsNumber
   } from 'class-validator';
 
   export class SignupDto {
@@ -15,7 +15,7 @@ import {
     @IsString()
     lastName: string;
 
-    @IsString()
+    @IsNumber()
     phoneNumber: number;
 
     @IsString()
