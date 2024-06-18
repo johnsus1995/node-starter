@@ -19,7 +19,7 @@ export class ExamRoutes implements Route {
   private initializeRoutes() {
     this.router.post(
       `${this.path}`,
-      authMiddleware,
+      // authMiddleware,
       validationMiddleware(ExamDto, "body"),
       this.examController.createExam
     );

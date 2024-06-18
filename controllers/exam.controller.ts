@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { CreatePostDto } from "../dtos/post.dto";
 import { ExamService } from "../services/exam.service";
 import { ExamDto } from "../dtos/exam.dto";
 
