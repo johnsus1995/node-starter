@@ -3,7 +3,7 @@ import sequelize from ".";
 import { Exam } from "./Exam";
 
 export interface QuestionAttributes {
-  id: number;
+  questionId: number;
   examId: number;
   question: string;
   createdAt?: Date;
@@ -11,13 +11,14 @@ export interface QuestionAttributes {
   deletedAt?: Date;
 }
 
-export interface QuestionInput extends Optional<QuestionAttributes, "id"> {}
+export interface QuestionInput
+  extends Optional<QuestionAttributes, "questionId"> {}
 
 export class Question
   extends Model<QuestionAttributes, QuestionInput>
   implements QuestionAttributes
 {
-  public id!: number;
+  public questionId!: number;
   public examId!: number;
   public question!: string;
   public readonly createdAt!: Date;
@@ -25,9 +26,10 @@ export class Question
   public readonly deletedAt!: Date;
 }
 
+
 Question.init(
   {
-    id: {
+    questionId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -35,6 +37,10 @@ Question.init(
     examId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: Exam, // 'Exams' would also work
+        key: 'id'
+      }
     },
     question: {
       type: DataTypes.TEXT,
@@ -48,5 +54,5 @@ Question.init(
   }
 );
 
-Exam.hasMany(Question);
-Question.belongsTo(Exam, { foreignKey: "id" });
+Exam.hasMany(Question, { foreignKey: "examId" }); //one to many
+Question.belongsTo(Exam, { foreignKey: "examId" }); //many to one
