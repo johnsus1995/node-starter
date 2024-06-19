@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
-import { User } from "./User";
+import { Exam } from "./Exam";
 
 export interface QuestionAttributes {
   id: number;
@@ -48,5 +48,5 @@ Question.init(
   }
 );
 
-// User.hasMany(Question);
-// Question.belongsTo(User, { foreignKey: "userId" });
+Exam.hasMany(Question);
+Question.belongsTo(Exam, { foreignKey: "id" });
