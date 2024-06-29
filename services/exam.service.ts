@@ -11,4 +11,11 @@ export class ExamService {
 
     return newExam;
   }
+
+  public async getPosts(): Promise<any[]> {
+    const exams = await Exam.findAll({
+      attributes: ["id", "title", "description"],
+    });
+    return exams;
+  }
 }

@@ -23,5 +23,5 @@ export const sendEmail = async (
     html: `<div><h2>Hi ${name}</h2><h4>${token}</h4></div>`, // html body
   });
 
-  console.log("**", info);
+  console.log("*NODE-MAILER*", info);
 };

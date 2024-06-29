@@ -11,7 +11,6 @@ export class ExamRoutes implements Route {
 
   public examController = new ExamController();
 
-
   constructor() {
     this.initializeRoutes();
   }
@@ -22,6 +21,12 @@ export class ExamRoutes implements Route {
       // authMiddleware,
       validationMiddleware(ExamDto, "body"),
       this.examController.createExam
+    );
+
+    this.router.get(
+      `${this.path}`,
+      // authMiddleware,
+      this.examController.getExams
     );
 
     // this.router.get(
