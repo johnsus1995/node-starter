@@ -43,7 +43,7 @@ StudentExam.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'User', // table name
+        model: "User", // table name
         key: 'id'
       }
     },
@@ -51,7 +51,7 @@ StudentExam.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Exam', // table name
+        model: "Exam", // table name
         key: 'id'
       }
     },
@@ -72,6 +72,7 @@ StudentExam.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
+    freezeTableName:true
   }
 );
 

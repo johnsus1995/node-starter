@@ -2,7 +2,7 @@ import {
     IsString,
   } from 'class-validator';
 
-  export class QuestionDto {
+  export class RoleDto {
     @IsString()
     role: string;
 }

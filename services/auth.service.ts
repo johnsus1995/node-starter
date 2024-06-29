@@ -4,7 +4,7 @@ import { User, UserAttributes } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../utils/sendEmail";
-import { PostAttributes } from "../models/Post";
+// import { PostAttributes } from "../models/Post";
 
 export class AuthService {
   public async signup(data: SignupDto): Promise<UserAttributes> {
@@ -20,7 +20,7 @@ export class AuthService {
       lastName: data.lastName,
       phoneNumber:data.phoneNumber,
       scjRegId:data.scjRegId,
-      role:data.role,
+      roleId:data.roleId,
       password: newPassword,
     });
 
@@ -64,7 +64,7 @@ export class AuthService {
     return { user: payload, token: `Bearer ${token}` };
   }
 
-  public async verifyEmail(token: string): Promise<PostAttributes> {
+  public async verifyEmail(token: string): Promise<any> {
     const res = jwt.verify(token, process.env.JWT_SECRET as string) as any;
     const user = await User.update(
       {

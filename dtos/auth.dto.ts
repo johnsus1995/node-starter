@@ -33,8 +33,8 @@ import {
     // @IsString()
     // profileImage: string;
 
-    @IsString()
-    role: string;
+    @IsNumber()
+    roleId: number;
 
 
     @IsString()

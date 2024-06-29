@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
-import { Post } from "./Post";
+import { Exam } from "./Exam";
 export interface UserAttributes {
   id: number;
   firstName: string;
@@ -8,13 +8,9 @@ export interface UserAttributes {
   email: string;
   password: string;
   isVerified: boolean | undefined;
-  phoneNumber:number;
-  scjRegId:string;
-  // address1:string;
-  // address2?:string;
-  // userName:string;
-  // profileImage?:string;
-  role:string;
+  phoneNumber: number;
+  scjRegId: string;
+  roleId?: number;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -35,13 +31,8 @@ export class User
   public isVerified: boolean | any;
   public phoneNumber!: number;
   public scjRegId!: string | any;
-  // public address1!: string;
-  // public address2: string;
-  // public userName!: string;
-  // public profileImage!: string;
-  public role!: string;
+  public roleId!: number;
 
-  
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
@@ -77,31 +68,15 @@ User.init(
       defaultValue: false,
     },
     phoneNumber: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
     },
     scjRegId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // address1: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // address2: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
-    // userName: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // profileImage: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
-    role: {
-      type: DataTypes.STRING,
+    roleId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
@@ -109,8 +84,6 @@ User.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
+    freezeTableName: true,
   }
 );
-
-User.hasMany(Post, { foreignKey: "userId" });
-Post.belongsTo(User, { foreignKey: "userId", as: "user" });

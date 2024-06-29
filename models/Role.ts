@@ -3,21 +3,21 @@ import sequelize from ".";
 import { User } from "./User";
 
 export interface RoleAttributes {
-  roleId: number;
+  id: number;
   role: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
 }
 
-export interface QuestionInput
-  extends Optional<RoleAttributes, "roleId"> {}
+export interface RoleInput
+  extends Optional<RoleAttributes, "id"> {}
 
 export class Role
-  extends Model<RoleAttributes, QuestionInput>
+  extends Model<RoleAttributes, RoleInput>
   implements RoleAttributes
 {
-  public roleId!: number;
+  public id!: number;
   public role!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -27,7 +27,7 @@ export class Role
 
 Role.init(
   {
-    roleId: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -41,7 +41,8 @@ Role.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
+    freezeTableName:true,
   }
 );
 
-Role.belongsTo(User, { foreignKey: "roleId" });
+Role.hasMany(User,{foreignKey:'roleId'})

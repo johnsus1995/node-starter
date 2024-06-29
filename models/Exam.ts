@@ -1,6 +1,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
 import { User } from "./User";
+import { Question } from "./Question";
 
 export interface ExamAttributes {
   id: number;
@@ -51,6 +52,7 @@ Exam.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
+    freezeTableName: true,
   }
 );
 
