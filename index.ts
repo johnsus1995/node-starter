@@ -5,6 +5,7 @@ import { ExamRoutes } from "./routes/exam.route";
 import { QuestionRoutes } from "./routes/question.route";
 import { AnswerRoutes } from "./routes/answer.route";
 import { RoleRoutes } from "./routes/role.route";
+import { StudentExamRoutes } from "./routes/studentExam.route";
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -16,7 +17,8 @@ const routes = [
   new ExamRoutes(),
   new QuestionRoutes(),
   new AnswerRoutes(),
-  new RoleRoutes()
+  new RoleRoutes(),
+  new StudentExamRoutes()
 ];
 routes.forEach((route: any) => app.use("/api", route.router));
 

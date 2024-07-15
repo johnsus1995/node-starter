@@ -7,8 +7,8 @@ export interface StudentExamAttributes {
   id: number;
   studentId: number;
   examId: number;
-  startTime: Date;
-  endTime: Date;
+  startTime?: Date;
+  endTime?: Date;
   submitted: boolean;
   createdAt?: Date;
   updatedAt?: Date;
@@ -57,11 +57,11 @@ StudentExam.init(
     },
     startTime: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     endTime: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     submitted: {
       type: DataTypes.BOOLEAN,

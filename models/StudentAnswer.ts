@@ -4,7 +4,7 @@ import { StudentExam } from "./StudentExam";
 import { Question } from "./Question";
 
 export interface StudentAnswerAttributes {
-  id: number;
+  id?: number;
   studentExamId: number;
   questionId: number;
   answerText: string;

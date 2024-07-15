@@ -1,9 +1,6 @@
-import { IsString, IsNumber } from "class-validator";
+import { IsString, IsNumber,IsOptional, IsBoolean } from "class-validator";
 
 export class StudentExamDto {
-  @IsNumber()
-  id: number;
-
   // @IsNumber()
   // adminId: number;
 
@@ -13,12 +10,14 @@ export class StudentExamDto {
   @IsNumber()
   examId: number;
 
+  @IsOptional()
   @IsNumber()
   startTime: number;
 
+  @IsOptional()
   @IsNumber()
   endTime: number;
 
-  @IsNumber()
+  @IsBoolean()
   submitted: boolean;
 }
