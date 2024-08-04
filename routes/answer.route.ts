@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { Route } from "../interfaces/routes.interface";
 import { validationMiddleware } from "../middleware/validation.middleware";
-import { authMiddleware } from "../middleware/auth.middleware";
+// import { authMiddleware } from "../middleware/auth.middleware";
 import { StudentAnswerDto } from "../dtos/studentAnswer.dto";
 import AnswerController from "../controllers/answer.controller";
+import { AnswerDto } from "../dtos/answer.dto";
 
 export class AnswerRoutes implements Route {
   public router = Router();
@@ -21,7 +22,14 @@ export class AnswerRoutes implements Route {
       `${this.path}`,
       // authMiddleware,
       validationMiddleware(StudentAnswerDto, "body"),
-      this.answerController.addAnswer
+      this.answerController.addStudentAnswer
+    );
+
+    this.router.post(
+      `${this.path}/correct-answer`,
+      // authMiddleware,
+      validationMiddleware(AnswerDto, "body"),
+      this.answerController.addCorrectAnswer
     );
 
     // this.router.get(

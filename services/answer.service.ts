@@ -1,14 +1,27 @@
+import { AnswerDto } from "../dtos/answer.dto";
 import { StudentAnswerDto } from "../dtos/studentAnswer.dto";
+import { Answer } from "../models/Answer";
 import { StudentAnswer } from "../models/StudentAnswer";
 
 export class AnswerService {
-  public async addAnswer(data: StudentAnswerDto): Promise<any> {
-    const newAnswer = await StudentAnswer.create({
+  public async addStudentAnswer(data: StudentAnswerDto): Promise<any> {
+    const newStudentAnswer = await StudentAnswer.create({
       studentExamId: data.studentExamId,
       questionId: data.questionId,
       answerText: data.answerText,
     });
 
-    return newAnswer;
+    return newStudentAnswer;
+  }
+
+  public async addCorrectAnswer(data: AnswerDto): Promise<any> {
+    const newCorrectAnswer = await Answer.create({
+      examId: data.examId,
+      questionId: data.questionId,
+      answer: data.answer,
+      points: data.points,
+    });
+
+    return newCorrectAnswer;
   }
 }
