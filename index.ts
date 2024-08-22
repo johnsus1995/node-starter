@@ -6,8 +6,12 @@ import { QuestionRoutes } from "./routes/question.route";
 import { AnswerRoutes } from "./routes/answer.route";
 import { RoleRoutes } from "./routes/role.route";
 import { StudentExamRoutes } from "./routes/studentExam.route";
+import cors from 'cors'
+
 
 const app = express();
+app.use(cors());
+
 const port = process.env.PORT || 9000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
