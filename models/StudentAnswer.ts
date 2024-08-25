@@ -61,15 +61,16 @@ StudentAnswer.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
+    freezeTableName: true,
   }
 );
 
 // Define associations
-StudentExam.hasMany(StudentAnswer, { foreignKey: "studentExamId" });
-Question.hasMany(StudentAnswer, { foreignKey: "studentExamId" });
+// StudentExam.hasMany(StudentAnswer);
+// Question.hasMany(StudentAnswer);
 
-StudentAnswer.belongsTo(StudentExam, { foreignKey: "questionId" }); //many to one
-StudentAnswer.belongsTo(Question, { foreignKey: "questionId" });
+// StudentAnswer.belongsTo(StudentExam); //many to one
+// StudentAnswer.belongsTo(Question);
 
 
 /**

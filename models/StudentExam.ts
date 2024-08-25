@@ -77,8 +77,8 @@ StudentExam.init(
 );
 
 // Define associations
-User.hasMany(StudentExam, { foreignKey: "studentId" });
-Exam.hasMany(StudentExam, { foreignKey: "examId" });
+// User.hasMany(StudentExam);
+// Exam.hasMany(StudentExam);
 
-StudentExam.belongsTo(User, { foreignKey: "studentId" });
-StudentExam.belongsTo(Exam, { foreignKey: "examId" });
+// StudentExam.belongsTo(User);
+// StudentExam.belongsTo(Exam);

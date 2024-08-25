@@ -27,7 +27,7 @@ class StudentExamController {
 
   public getExams = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const exams = await this.studentExamService.getPosts();
+      const exams = await this.studentExamService.getStudentExams();
       res.status(200).json({
         message: "Successfully fetched all exams.",
         exams,

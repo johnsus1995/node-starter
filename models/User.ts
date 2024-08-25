@@ -87,3 +87,4 @@ User.init(
     freezeTableName: true,
   }
 );
+

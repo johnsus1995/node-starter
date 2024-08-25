@@ -8,7 +8,7 @@ export interface AnswerAttributes {
   examId: number;
   questionId: number;
   answer: string;
-  points: number;
+  // points: number;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -24,7 +24,7 @@ export class Answer
   public examId: number;
   public questionId: number;
   public answer: string;
-  public points: number;
+  // public points: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
@@ -57,10 +57,10 @@ Answer.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    points: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // points: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   },
   {
     timestamps: true,
@@ -70,5 +70,5 @@ Answer.init(
   }
 );
 
-Answer.belongsTo(Exam, { foreignKey: "examId" });
-Answer.belongsTo(Question, { foreignKey: "questionId" });
+Answer.belongsTo(Exam);
+Answer.belongsTo(Question);

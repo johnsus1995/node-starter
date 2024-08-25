@@ -7,15 +7,19 @@ export class ExamService {
       adminId: data.adminId,
       description: data.description,
       title: data.title,
+      deadline: data.deadline,
+      status: data.status,
+      score: data.score,
     });
 
     return newExam;
   }
 
-  public async getPosts(): Promise<any[]> {
+  public async getExams(): Promise<any[]> {
     const exams = await Exam.findAll({
-      attributes: ["id", "title", "description"],
+      attributes: ["id", "title", "description", "deadline", "status", "score"],
     });
     return exams;
   }
 }
+

@@ -10,6 +10,6 @@ export class AnswerDto {
   @IsString()
   answer: string;
 
-  @IsNumber()
-  points: number;
+  // @IsNumber()
+  // points: number;
 }

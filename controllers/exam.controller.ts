@@ -11,12 +11,12 @@ class ExamController {
     next: NextFunction
   ) => {
     try {
-      const postData: ExamDto = req.body;
+      const data: ExamDto = req.body;
       // const userId = req.user.id;
-      const data = await this.examService.addExam(postData);
+      const newExam = await this.examService.addExam(data);
       res.status(200).json({
         message: "New exam added",
-        data,
+        newExam,
       });
     } catch (error: any) {
       res
@@ -27,7 +27,7 @@ class ExamController {
 
   public getExams = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const exams = await this.examService.getPosts();
+      const exams = await this.examService.getExams();
       res.status(200).json({
         message: "Successfully fetched all exams.",
         exams,

@@ -11,8 +11,7 @@ export interface QuestionAttributes {
   deletedAt?: Date;
 }
 
-export interface QuestionInput
-  extends Optional<QuestionAttributes, "id"> {}
+export interface QuestionInput extends Optional<QuestionAttributes, "id"> {}
 
 export class Question
   extends Model<QuestionAttributes, QuestionInput>
@@ -26,7 +25,6 @@ export class Question
   public readonly deletedAt!: Date;
 }
 
-
 Question.init(
   {
     id: {
@@ -39,8 +37,8 @@ Question.init(
       allowNull: false,
       references: {
         model: Exam,
-        key: 'id'
-      }
+        key: "id",
+      },
     },
     question: {
       type: DataTypes.TEXT,
@@ -51,9 +49,9 @@ Question.init(
     timestamps: true,
     sequelize: sequelize,
     paranoid: true,
-    freezeTableName:true,
+    freezeTableName: true,
   }
 );
 
-Exam.hasMany(Question, { foreignKey: 'examId' }); 
-Question.belongsTo(Exam, { foreignKey: 'examId' });
+Exam.hasMany(Question, { onDelete: "CASCADE" });
+Question.belongsTo(Exam, { onDelete: "CASCADE" });

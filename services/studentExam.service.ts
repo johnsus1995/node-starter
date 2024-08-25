@@ -12,7 +12,7 @@ export class StudentExamService {
     return newStudentExam;
   }
 
-  public async getPosts(): Promise<any[]> {
+  public async getStudentExams(): Promise<any[]> {
     const exams = await StudentExam.findAll({
       attributes: ["id", "title", "description"],
     });

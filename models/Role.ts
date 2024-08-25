@@ -45,4 +45,4 @@ Role.init(
   }
 );
 
-Role.hasMany(User,{foreignKey:'roleId'})
+// Role.hasMany(User)

@@ -1,13 +1,14 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from ".";
 import { User } from "./User";
-import { Question } from "./Question";
-
 export interface ExamAttributes {
   id: number;
   title: string;
   description: string;
   adminId: number;
+  deadline: string;
+  status: string;
+  score: number | null;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -23,6 +24,9 @@ export class Exam
   public title!: string;
   public description!: string;
   public adminId: number;
+  public deadline: string;
+  public status: string;
+  public score: number | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly deletedAt!: Date;
@@ -47,6 +51,18 @@ Exam.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    deadline: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    score: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     timestamps: true,
@@ -56,5 +72,9 @@ Exam.init(
   }
 );
 
+Exam.belongsTo(User);
 User.hasMany(Exam);
-Exam.belongsTo(User, { foreignKey: "userId" });
+
+// Cascade delete answers when an exam is deleted
+// Exam.hasMany(Answer, { foreignKey: "examId", onDelete: 'CASCADE' });
+// Exam.hasMany(Question, { foreignKey: "examId", onDelete: 'CASCADE' });

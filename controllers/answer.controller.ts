@@ -33,7 +33,6 @@ class AnswerController {
   ) => {
     try {
       const correctAnswerData: AnswerDto = req.body;
-      // const userId = req.user.id;
       const data = await this.answerService.addCorrectAnswer(correctAnswerData);
       res.status(200).json({
         message: "Correct Answer added to question (id:)",
